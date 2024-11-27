@@ -1,16 +1,20 @@
-/**TASK ZI
+/**
+ TASK ZM:
 
-Shundan function yozing, bu function 3 soniydan so'ng
-"Hello World!" so'zini qaytarsin.
+Shunday function yozing, va bu function parametr
+sifatida raqamlarni qabul qilsin. Bu function qabul qilingan
+raqamlarni orqasiga o'girib qaytarsin
 
-MASALAN: delayHelloWorld("Hello World"); return "Hello World"; */
+MASALAN: reverseInteger(123456789); return 987654321;
+
+Yuqoridagi misolda, function kiritilgan raqamlarni orqasiga
+o'girib (reverse) qilib qaytarmoqda.
+ */
 
 
-function delayHelloWorld(input: string) {
-    let word = setTimeout(() => {
-        console.log(input);
-      }, 3000);
-      return word;
-}
-
-console.log(delayHelloWorld("olma"));
+function reverseInteger(num: number) {
+  const teskarisi = Number(num.toString().split('').reverse().join(''));
+    return teskarisi;
+};
+const result = reverseInteger(9876543210);
+console.log(result);
