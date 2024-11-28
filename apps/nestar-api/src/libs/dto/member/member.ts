@@ -2,7 +2,6 @@ import { Field, Int, ObjectType } from "@nestjs/graphql";
 import { ObjectId } from "mongoose";
 import { MemberAuthType, MemberStatus, MemberType } from "../../enums/member.enum";
 
-
 @ObjectType()
 export class Member {
     @Field(() => String)
@@ -14,7 +13,7 @@ export class Member {
     @Field(() => MemberStatus)
     memberStatus: MemberStatus;
 
-    @Field(() => MemberAuthType, {nullable: true})  // o'zgartidim nullable qoshdim
+    @Field(() => MemberAuthType, {nullable: true})
     memberAuthType?: MemberAuthType;
   
     @Field(() => String)
@@ -71,9 +70,8 @@ export class Member {
     deletedAt?: Date;
 
     @Field(() => Date)
-    createdAt?: Date;
+    createdAt: Date;
 
     @Field(() => Date)
-    updatedAt?: Date;
-
+    updatedAt: Date;
 }
