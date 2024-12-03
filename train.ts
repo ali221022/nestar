@@ -32,6 +32,9 @@ almashtirib qaytarsin.
 MASALAN: rotateArray([1, 2, 3, 4, 5, 6], 3); return [5, 6, 1, 2, 3, 4];
  */
 
-function rotateArray(array: [], number: number) {
-  
+function rotateArray(array: number[], number: number) {
+  const validIndex = number % array.length;
+  return [...array.slice(number), ...array.slice(0, number)];
 }
+
+console.log(rotateArray([1, 2, 3, 4, 5, 6], 3)); // [4, 5, 6, 1, 2, 3]
