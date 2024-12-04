@@ -10,7 +10,7 @@ export class WithoutGuard implements CanActivate {
 
 		if (context.contextType === 'graphql') {
 			const request = context.getArgByIndex(2).req,
-				bearerToken = request.headers.authorization;
+			bearerToken = request.headers.authorization;
 
 			if (bearerToken) {
 				try {

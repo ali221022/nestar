@@ -11,12 +11,12 @@ export class AuthGuard implements CanActivate {
 
 		if (context.contextType === 'graphql') {
 			const request = context.getArgByIndex(2).req;
-
 			const bearerToken = request.headers.authorization;
+
 			if (!bearerToken) throw new BadRequestException(Message.TOKEN_NOT_EXIST);
 
 			const token = bearerToken.split(' ')[1],
-				authMember = await this.authService.verifyToken(token);
+			authMember = await this.authService.verifyToken(token);
 			if (!authMember) throw new UnauthorizedException(Message.NOT_AUTHENTICATED);
 
 			console.log('memberNick[auth] =>', authMember.memberNick);
