@@ -47,7 +47,7 @@ export class MemberUpdate {
 
     @IsOptional()
     @Field(() => String, { nullable: true })
-    memberDesk?: string;
+    memberDesc?: string;
 
     deletedAt?: Date;
 }
