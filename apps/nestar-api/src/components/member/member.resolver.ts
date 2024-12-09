@@ -95,12 +95,12 @@ export class MemberResolver {
 
     /** UPLOADER */
 
-    @UseGuards(AuthGuard)
+@UseGuards(AuthGuard)
 @Mutation((returns) => String)
 public async imageUploader(
 	@Args({ name: 'file', type: () => GraphQLUpload })
-{ createReadStream, filename, mimetype }: FileUpload,
-@Args('target') target: String,
+    { createReadStream, filename, mimetype }: FileUpload,
+    @Args('target') target: String,
 ): Promise<string> {
 	console.log('Mutation: imageUploader');
 
