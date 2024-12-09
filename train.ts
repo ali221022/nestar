@@ -32,9 +32,65 @@ almashtirib qaytarsin.
 MASALAN: rotateArray([1, 2, 3, 4, 5, 6], 3); return [5, 6, 1, 2, 3, 4];
  */
 
+/*
 function rotateArray(array: number[], number: number) {
   const validIndex = number % array.length;
   return [...array.slice(number), ...array.slice(0, number)];
 }
 
 console.log(rotateArray([1, 2, 3, 4, 5, 6], 3)); // [4, 5, 6, 1, 2, 3]
+*/
+
+/**
+ Shunday function yozing, u 2 ta array parametr qabul qilsin.
+Siz bu ikki arrayning qiymatlari o'xshash bo'lishini 
+(ya'ni, ularning barcha elementlari bir xil bo'lishini) tekshirishingiz kerak.
+
+MASALAN:
+areArraysEqual([1, 2, 3], [3, 1, 2]) // true
+areArraysEqual([1, 2, 3], [3, 1, 2, 1]) // true
+areArraysEqual([1, 2, 3], [4, 1, 2]) // false
+
+ */
+
+/**
+ function areArraysEqual(arr1: any[], arr2: any[]): boolean {
+    return arr1.sort().toString() === arr2.sort().toString();
+}
+
+// Testlar
+console.log(areArraysEqual([1, 2, 3], [3, 1, 2])); // true
+console.log(areArraysEqual([1, 2, 3], [3, 1, 2, 1])); // false
+console.log(areArraysEqual([1, 2, 3], [4, 1, 2])); // false
+
+ */
+
+/**
+ TASK ZQ:
+
+Shunday function yozing, bu function berilgan array parametr
+ichida ikki marotaba yoki undan ko'p takrorlangan sonlarni alohida
+array'da yagonadan qaytarsin qaytarsin.
+
+MASALAN: findDuplicates([1,2,3,4,5,4,3,4]); return [3, 4];
+ */
+
+function findDuplicates(arr: number[]): number[] {
+  const seen = new Set<number>(); 
+  const duplicates = new Set<number>(); 
+
+  for (const num of arr) {
+      if (seen.has(num)) {
+          duplicates.add(num);
+      } else {
+          seen.add(num);
+      }
+  }
+
+  return Array.from(duplicates);
+}
+
+// Testlar
+console.log(findDuplicates([1, 2, 3, 4, 5, 4, 3, 4])); // [3, 4]
+console.log(findDuplicates([1, 1, 2, 2, 3, 3, 3])); // [1, 2, 3]
+console.log(findDuplicates([1, 2, 3, 4, 5])); // []
