@@ -75,6 +75,7 @@ array'da yagonadan qaytarsin qaytarsin.
 MASALAN: findDuplicates([1,2,3,4,5,4,3,4]); return [3, 4];
  */
 
+/*
 function findDuplicates(arr: number[]): number[] {
   const seen = new Set<number>(); 
   const duplicates = new Set<number>(); 
@@ -94,3 +95,28 @@ function findDuplicates(arr: number[]): number[] {
 console.log(findDuplicates([1, 2, 3, 4, 5, 4, 3, 4])); // [3, 4]
 console.log(findDuplicates([1, 1, 2, 2, 3, 3, 3])); // [1, 2, 3]
 console.log(findDuplicates([1, 2, 3, 4, 5])); // []
+*/
+
+/**
+ TASK ZR:
+
+Shunday function yozing, bu function,
+berilgan parametr string tarkibidagi raqam va sonlarni
+sanab object sifatida qaytarsin.
+
+MASALAN: countNumberAndLetters(“string152%\¥”); return {number: 3, letter: 6};
+
+ */
+
+function countNumberAndLetters(input: string): { number: number, letter: number } {
+  let result = { number: 0, letter: 0 };
+
+  for (let char of input) {
+      if (char >= '0' && char <= '9') result.number++;
+      else if ((char >= 'a' && char <= 'z') || (char >= 'A' && char <= 'Z')) result.letter++;
+  }
+
+  return result;
+}
+
+console.log(countNumberAndLetters("string152%¥")); 
