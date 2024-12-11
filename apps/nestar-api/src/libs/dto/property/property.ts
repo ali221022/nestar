@@ -82,4 +82,5 @@ export class Property {
 
  @Field(() => Member, { nullable: true })
  memberData?: Member;
+    accessToken: string;
 }
