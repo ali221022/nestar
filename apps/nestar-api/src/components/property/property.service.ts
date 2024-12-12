@@ -5,14 +5,13 @@ import { AuthService } from '../auth/auth.service';
 import { Model, ObjectId } from 'mongoose';
 import { Properties, Property } from '../../libs/dto/property/property';
 import { Direction, Message } from '../../libs/enums/common.enum';
-import { AgentPropertiesInquiry, PropertiesInquiry, PropertyInput } from '../../libs/dto/property/property.input';
+import { AgentPropertiesInquiry, AllPropertiesInquiry, PropertiesInquiry, PropertyInput } from '../../libs/dto/property/property.input';
 import { MemberService } from '../member/member.service';
 import { PropertyStatus } from '../../libs/enums/property.enum';
 import { StatisticModifier, T } from '../../libs/types/common';
 import { ViewGroup } from '../../libs/enums/view.enum';
 import { PropertyUpdate } from '../../libs/dto/property/property.update';
 import moment from 'moment';
-import { lookup } from 'dns';
 import { lookupMember, shapeIntoMongoObjectId } from '../../libs/config';
 
 
@@ -172,6 +171,35 @@ public async getAgentProperties(memberId: ObjectId, input: AgentPropertiesInquir
         propertyStatus: propertyStatus ?? { $ne: PropertyStatus.DELETE },
     };
     const sort: T = { [input?.sort ?? "createdAt"]: input?.direction ?? Direction.DESC};
+
+    const result = await this.propertyModel.aggregate([
+        { $match: match },
+        { $sort: sort },
+        {
+            $facet: {
+                list: [
+                    { $skip: (input.page - 1) * input.limit },
+                    { $limit: input.limit },
+                    lookupMember,
+                    { $unwind: "$memberData" },
+                ],
+                metaCounter: [{ $count: "total" }],
+            },
+        },
+    ])
+    .exec();
+    if (!result.length) throw new InternalServerErrorException(Message.NO_DATA_FOUND);
+    
+    return result[0];
+}
+
+public async getAllPropertiesByAdmin(input: AllPropertiesInquiry): Promise<Properties> {
+    const { propertyStatus, propertyLocationList } = input.search;
+    const match: T = {};
+    const sort: T = { [input?.sort ?? "createdAt"]: input?.direction ?? Direction.DESC };
+
+    if (propertyStatus) match.propertyStatus = propertyStatus;
+    if (propertyLocationList) match.PropertyLocation = { $in: propertyLocationList };
 
     const result = await this.propertyModel.aggregate([
         { $match: match },
