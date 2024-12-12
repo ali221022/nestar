@@ -108,6 +108,7 @@ MASALAN: countNumberAndLetters(“string152%\¥”); return {number: 3, letter: 
 
  */
 
+/*
 function countNumberAndLetters(input: string): { number: number, letter: number } {
   let result = { number: 0, letter: 0 };
 
@@ -120,3 +121,20 @@ function countNumberAndLetters(input: string): { number: number, letter: number 
 }
 
 console.log(countNumberAndLetters("string152%¥")); 
+*/
+
+/**
+ TASK ZS:
+
+Shunday function yozing, bu function parametrdagi array ichida
+bir marotaba takrorlangan element'ni qaytarsin
+
+MASALAN: singleNumber([4, 2, 1, 2, 1]); return 4;
+
+ */
+
+function singleNumber(input: number[]): number {
+  return input.reduce((acc, num) => acc ^ num, 0);
+}
+
+console.log(singleNumber([4, 2, 1, 2, 1]));
