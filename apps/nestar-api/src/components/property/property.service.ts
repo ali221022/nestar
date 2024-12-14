@@ -11,7 +11,7 @@ import { PropertyStatus } from '../../libs/enums/property.enum';
 import { StatisticModifier, T } from '../../libs/types/common';
 import { ViewGroup } from '../../libs/enums/view.enum';
 import { PropertyUpdate } from '../../libs/dto/property/property.update';
-import moment from 'moment';
+import * as moment from "moment";
 import { lookupMember, shapeIntoMongoObjectId } from '../../libs/config';
 
 
