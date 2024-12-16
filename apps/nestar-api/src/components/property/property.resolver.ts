@@ -108,6 +108,8 @@ export class PropertyResolver {
     return await this.propertyService.removePropertyByAdmin(propertyId);
   }
 
+  /** ADMIN */
+
 
 
 
