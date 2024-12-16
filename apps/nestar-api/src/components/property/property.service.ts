@@ -47,7 +47,7 @@ public async getProperty(memberId: ObjectId, propertyId: ObjectId): Promise<Prop
         propertyStatus: PropertyStatus.ACTIVE,
     };
     
-    const targetProperty: Property = await this.propertyModel.findOne(search).exec(); // shu yerga lean() qo'yish kerak
+    const targetProperty: Property = await this.propertyModel.findOne(search).lean().exec() as Property; // shu yerga lean() qo'yish kerak
     if (!targetProperty) throw new InternalServerErrorException(Message.NO_DATA_FOUND);
 
     if (memberId) {
