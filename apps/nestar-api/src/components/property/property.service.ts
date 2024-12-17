@@ -20,7 +20,6 @@ import { lookupMember, shapeIntoMongoObjectId } from '../../libs/config';
 export class PropertyService {
     constructor(
         @InjectModel("Property") private readonly propertyModel: Model<Property>, 
-        private authService: AuthService,
         private viewService: ViewService,
         private memberService: MemberService,
 ) {}
