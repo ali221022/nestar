@@ -75,13 +75,13 @@ export class BoardArticleResolver {
         @Roles(MemberType.ADMIN)
         @UseGuards(RolesGuard)
         @Mutation((returns) => BoardArticle)
-        public async updateBoardArticlesByAdmin(
+        public async updateBoardArticleByAdmin(
           @Args("input") input: BoardArticleUpdate,
           @AuthMember("_id") memberId: ObjectId,
         ): Promise<BoardArticle> {
-          console.log("Mutation: updateBoardArticlesByAdmin");
+          console.log("Mutation: updateBoardArticleByAdmin");
           input._id = shapeIntoMongoObjectId(input._id);
-          return await this.boardArticleService.updateBoardArticlesByAdmin(input);
+          return await this.boardArticleService.updateBoardArticleByAdmin(input);
         }
 
          @Roles(MemberType.ADMIN)
@@ -95,7 +95,5 @@ export class BoardArticleResolver {
             const articleId = shapeIntoMongoObjectId(input);
             return await this.boardArticleService.removeBoardArticleByAdmin(articleId);
           }
-
-
     
 }
