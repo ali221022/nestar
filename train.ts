@@ -133,8 +133,33 @@ MASALAN: singleNumber([4, 2, 1, 2, 1]); return 4;
 
  */
 
+/*
 function singleNumber(input: number[]): number {
   return input.reduce((acc, num) => acc ^ num, 0);
 }
 
 console.log(singleNumber([4, 2, 1, 2, 1]));
+*/
+
+/**
+ TASK ZT:
+
+Shunday function yozing, bu function parametrdagi string ichida
+bir marotabadan ortiq qaytarilmagan birinchi harf indeksini qaytarsin
+
+MASALAN: firstUniqueCharIndex(“stamp”); return 0;
+
+Yuqoridagi misolda, 'stamp' so'zi tarkibida barcha harflar bir marotabadan
+ortiq takrorlanmagan, lekin shartga muvofiq, birinchi topilgan harf indeksi qaytarilmoqda.
+ */
+
+function firstUniqueCharIndex(s: string): number {
+  for (let i = 0; i < s.length; i++) {
+    if (s.indexOf(s[i]) === i && s.lastIndexOf(s[i]) === i) {
+      return i;
+    }
+  }
+  return -1;
+}
+
+console.log(firstUniqueCharIndex("stamp"));
