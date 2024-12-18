@@ -197,7 +197,11 @@ public async getAgentProperties(memberId: ObjectId, input: AgentPropertiesInquir
 }
 
    public async likeTargetProperty(memberId: ObjectId, likeRefId: ObjectId): Promise<Property> {
-        const target: Property = await this.propertyModel.findOne({ _id: likeRefId, propertyStatus: PropertyStatus.ACTIVE }).exec();
+        const target: Property = await this.propertyModel
+        .findOne({ 
+            _id: likeRefId, 
+            propertyStatus: PropertyStatus.ACTIVE })
+            .exec();
         if (!target) throw  new InternalServerErrorException(Message.NO_DATA_FOUND);
 
         const input: LikeInput = {
@@ -208,7 +212,11 @@ public async getAgentProperties(memberId: ObjectId, input: AgentPropertiesInquir
 
         //like toggle via Like modules
         const modifier: number = await this.likeService.toggleLike(input);
-        const result = await this.propertyStatsEditor({ _id: likeRefId, targetKey: "propertyLikes", modifier: modifier });
+        const result = await this.propertyStatsEditor({ 
+            _id: likeRefId, 
+            targetKey: "propertyLikes", 
+            modifier: modifier, 
+        });
 
         if(!result) throw new InternalServerErrorException(Message.SOMETHING_WENT_WRONG);
 

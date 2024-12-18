@@ -81,7 +81,7 @@ export class PropertyResolver {
           @Args("propertyId") input: string, 
           @AuthMember("_id") memberId: ObjectId,
       ): Promise<Property> {
-          console.log("Mutation: likeTargetPropertyr");
+          console.log("Mutation: likeTargetProperty");
           const likeRefId = shapeIntoMongoObjectId(input)
           return await this.propertyService.likeTargetProperty(memberId, likeRefId);
       }
