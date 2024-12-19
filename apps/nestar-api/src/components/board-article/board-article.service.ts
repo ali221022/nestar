@@ -14,6 +14,7 @@ import { lookupMember, shapeIntoMongoObjectId } from '../../libs/config';
 import { LikeInput } from '../../libs/dto/like/like.input';
 import { LikeGroup } from '../../libs/enums/like.enum';
 import { LikeService } from '../like/like.service';
+import { BoardArticleModule } from './board-article.module';
 
 @Injectable()
 export class BoardArticleService {
