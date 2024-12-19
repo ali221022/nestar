@@ -153,6 +153,7 @@ Yuqoridagi misolda, 'stamp' so'zi tarkibida barcha harflar bir marotabadan
 ortiq takrorlanmagan, lekin shartga muvofiq, birinchi topilgan harf indeksi qaytarilmoqda.
  */
 
+/*
 function firstUniqueCharIndex(s: string): number {
   for (let i = 0; i < s.length; i++) {
     if (s.indexOf(s[i]) === i && s.lastIndexOf(s[i]) === i) {
@@ -163,3 +164,15 @@ function firstUniqueCharIndex(s: string): number {
 }
 
 console.log(firstUniqueCharIndex("stamp"));
+*/
+
+/**
+ Shunday function yozing, u parametrda berilgan stringni kebab casega otkazib qaytarsin. Bosh harflarni kichik harflarga ham otkazsin.
+MASALAN: stringToKebab(“I love Kebab”) return “i-love-kebab”
+ */
+
+const stringToKebab = (input: string): string => 
+  input.trim().toLowerCase().replace(/\s+/g, '-');
+
+
+console.log(stringToKebab("I love Kebab"));

@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, forwardRef } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { FollowService } from './follow.service';
 import { FollowResolver } from './follow.resolver';
@@ -14,6 +14,7 @@ import { MemberModule } from '../member/member.module';
                 schema: FollowSchema, 
             }
         ]), 
+       // forwardRef(() => MemberModule),
         MemberModule,
         AuthModule,       
      ],
