@@ -14,10 +14,10 @@ import { MemberModule } from '../member/member.module';
                 schema: FollowSchema, 
             }
         ]), 
-        AuthModule,
         MemberModule,
+        AuthModule,       
      ],
-    providers: [FollowService, FollowResolver],
+    providers: [FollowResolver, FollowService],
     exports: [FollowService],
 })
 export class FollowModule {}

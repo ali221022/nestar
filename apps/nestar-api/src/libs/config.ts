@@ -16,7 +16,7 @@ export const availablePropertySorts = [
 	"propertyPrice",
 ];
 export const availableBoardArticleSorts = ['createdAt', 'updatedAt', 'articleLikes', 'articleViews'];
-export const availableCommentSorts = ['createdAt', 'updatedAt']
+export const availableCommentSorts = ['createdAt', 'updatedAt'];
 
 
 /** IMAGE CONFIGURATION */
@@ -38,4 +38,22 @@ export const lookupMember = {
 		foreignField: "_id",
 		as: "memberData",
 	},
-}
+};
+
+export const lookupFollowingData = {
+	$lookup: {
+		from: "members",
+		localField: "followingId",
+		foreignField: "_id",
+		as: "followingData",
+	},
+};
+
+export const lookupFollowerData = {
+	$lookup: {
+		from: "members",
+		localField: "followerId",
+		foreignField: "_id",
+		as: "followerData",
+	},
+};
