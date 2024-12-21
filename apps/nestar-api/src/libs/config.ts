@@ -42,7 +42,7 @@ export const lookupAuthMemberLiked = (memberId: T, targetRefId: string = "$_id")
 			localMemberId: memberId,
 			localMyFavorite: true
 		},
-		pipeline: [
+		$pipeline: [
 			{
 				$match: {
 					$expr: {
@@ -61,7 +61,7 @@ export const lookupAuthMemberLiked = (memberId: T, targetRefId: string = "$_id")
 		],
 		as: "meLiked",
 	},
-   }
+   };
 };
 
 interface lookupAuthMemberFollowed {
@@ -79,7 +79,7 @@ export const lookupAuthMemberFollowed = (input: lookupAuthMemberFollowed) => {
 			 localFollowingId: followingId,
 			 localMyFavorite: true
 		 },
-		 pipeline: [
+		 $pipeline: [
 			 {
 				 $match: {
 					 $expr: {

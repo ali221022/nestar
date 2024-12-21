@@ -137,6 +137,8 @@ export class MemberService {
         ])
         .exec();
 
+        console.log("tekshirish:",result);         
+
         if(!result.length) throw new InternalServerErrorException(Message.NO_DATA_FOUND); 
 
         return result[0];
