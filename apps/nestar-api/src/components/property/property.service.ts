@@ -5,7 +5,7 @@ import { AuthService } from '../auth/auth.service';
 import { Model, ObjectId } from 'mongoose';
 import { Properties, Property } from '../../libs/dto/property/property';
 import { Direction, Message } from '../../libs/enums/common.enum';
-import { AgentPropertiesInquiry, AllPropertiesInquiry, PropertiesInquiry, PropertyInput } from '../../libs/dto/property/property.input';
+import { AgentPropertiesInquiry, AllPropertiesInquiry, OrdinaryInquiry, PropertiesInquiry, PropertyInput } from '../../libs/dto/property/property.input';
 import { MemberService } from '../member/member.service';
 import { PropertyStatus } from '../../libs/enums/property.enum';
 import { StatisticModifier, T } from '../../libs/types/common';
@@ -167,6 +167,10 @@ private shapeMatchQuery(match: T, input: PropertiesInquiry): void {
         });
     }
 }
+
+public async getFavorites(memberId: ObjectId, input: OrdinaryInquiry): Promise<Properties>  {
+     return await this.likeService.getFavoriteProperties(memberId, input);
+};
 
 public async getAgentProperties(memberId: ObjectId, input: AgentPropertiesInquiry): Promise<Properties> {
     const { propertyStatus } = input.search;
