@@ -46,7 +46,7 @@ export class LikeService {
 
     public async getFavoriteProperties(memberId: ObjectId, input: OrdinaryInquiry): Promise<Properties> {
         const { page, limit } = input;
-        const match: T = { LikeGroup: LikeGroup.PROPERTY, memberId: memberId };
+        const match: T = { likeGroup: LikeGroup.PROPERTY, memberId: memberId };
 
         const data: T = await this.likeModel.aggregate([
             { $match: match },
@@ -76,7 +76,7 @@ export class LikeService {
 
         const result: Properties = { list: [], metaCounter: data[0].metaCounter };
         result.list = data[0].list.map((ele) => ele.favoriteProperty);
-        
+
         return result;
     }
 }

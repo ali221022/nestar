@@ -56,6 +56,17 @@ export class PropertyResolver {
   @UseGuards(WithoutGuard)
    @Query((returns) => Properties)
    public async getProperties(
+    @Args("input") input: PropertiesInquiry,
+    @AuthMember("_id") memberId: ObjectId,
+  ): Promise<Properties> {
+    console.log("Query: getProperties");
+    const propertyId = shapeIntoMongoObjectId(input);
+    return await this.propertyService.getProperties(memberId, input);
+  }
+
+  @UseGuards(AuthGuard)
+   @Query((returns) => Properties)
+   public async getFavorites(
     @Args("input") input: OrdinaryInquiry,
     @AuthMember("_id") memberId: ObjectId,
   ): Promise<Properties> {
@@ -65,13 +76,12 @@ export class PropertyResolver {
 
   @UseGuards(AuthGuard)
    @Query((returns) => Properties)
-   public async getFavorites(
-    @Args("input") input: PropertiesInquiry,
+   public async getVisited(
+    @Args("input") input: OrdinaryInquiry,
     @AuthMember("_id") memberId: ObjectId,
   ): Promise<Properties> {
-    console.log("Query: getProperties");
-    const propertyId = shapeIntoMongoObjectId(input);
-    return await this.propertyService.getProperties(memberId, input);
+    console.log("Query: getVisited");
+    return await this.propertyService.getVisited(memberId, input);
   }
 
   @Roles(MemberType.AGENT)
