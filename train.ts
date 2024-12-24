@@ -184,7 +184,7 @@ console.log(stringToKebab("I love Kebab"));
 MASALAN: areParenthesesBalanced("string()ichida(qavslar)soni()balansda") return true
 */
 
-
+/*
 function areParenthesesBalanced(input: string): boolean {
   let balance = 0;
 
@@ -201,3 +201,26 @@ console.log(areParenthesesBalanced("string()ichida(qavslar)soni()balansda")); //
 console.log(areParenthesesBalanced("(balans)(yo'q)")); // false
 console.log(areParenthesesBalanced("((()))")); // true
 console.log(areParenthesesBalanced(")(")); // false
+*/
+
+/*
+Shunday function yozing, va bu function parametr sifatida
+raqamlardan iborat array'ni qabul qilsin. Function'ning vazifasi,
+berilgan parametr array tarkibida takrorlanmagan raqamlarni topib
+ularni yig'indisini qaytarsin.
+
+MASALAN: sumOfUnique([1,2,3,2]); return 4;
+
+Yuqoridagi misolda, argument sifatida pass qilinayotgan array
+tarkibida bir marotabadan ortiq takrorlanmagan raqamlar, bular '1', '3'.
+Va natija sifatida yig'indi 4'ga teng.
+*/
+
+function sumOfUnique(numbers: number[]): number {
+  return numbers
+    .filter(num => numbers.indexOf(num) === numbers.lastIndexOf(num))
+    .reduce((sum, num) => sum + num, 0); 
+}
+
+console.log(sumOfUnique([1, 2, 3, 2])); 
+
